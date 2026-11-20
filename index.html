@@ -1,0 +1,711 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#075967">
+
+  <title>Salvatore Pet Spa</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&family=Satisfy&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --teal: #087f89;
+      --dark-teal: #075967;
+      --pink: #ed4d9b;
+      --light-pink: #ffe5ef;
+      --cream: #fff7ed;
+      --white: #fffaf6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--dark-teal);
+      font-family: 'Nunito', sans-serif;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 850px;
+      min-height: 100vh;
+      margin: auto;
+      background: var(--white);
+      overflow: hidden;
+    }
+
+    /* CABEÇALHO */
+
+    .hero {
+      text-align: center;
+      padding: 28px 15px 25px;
+      background:
+        radial-gradient(circle at 10% 20%, #a9e9e9 0 5px, transparent 6px),
+        radial-gradient(circle at 90% 25%, #f6b6d3 0 6px, transparent 7px),
+        linear-gradient(135deg, #dff8f2, #fff2e9);
+      border-bottom: 4px solid var(--pink);
+    }
+
+    .hero-heart {
+      color: var(--pink);
+      font-size: 27px;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark-teal);
+      font-size: clamp(34px, 9vw, 58px);
+      font-weight: 900;
+      letter-spacing: -2px;
+      text-shadow: 1px 2px 2px #087f8930;
+    }
+
+    .logo span {
+      display: block;
+      color: var(--pink);
+      font-family: 'Satisfy', cursive;
+      font-size: clamp(40px, 10vw, 62px);
+      font-weight: normal;
+      margin-top: -8px;
+      letter-spacing: 0;
+    }
+
+    .logo-paw {
+      font-size: 25px;
+      margin: 3px;
+    }
+
+    .hero h2 {
+      font-size: 13px;
+      font-weight: 900;
+      margin: 7px 0 15px;
+    }
+
+    .animals {
+      font-size: 58px;
+      margin: 8px 0 15px;
+      filter: drop-shadow(2px 4px 3px #0002);
+    }
+
+    .hero-description {
+      font-size: 11px;
+      color: #287b81;
+    }
+
+    /* CONTEÚDO */
+
+    .container {
+      padding: 18px;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    /* PROMOÇÃO */
+
+    .discount {
+      text-align: center;
+      color: white;
+      background: linear-gradient(120deg, #ed4597, #f778b7);
+      padding: 25px 12px;
+      border-radius: 22px;
+      margin: 12px 0 25px;
+      box-shadow: 0 5px 12px #ed459750;
+      transform: rotate(-1deg);
+    }
+
+    .discount h2 {
+      font-size: clamp(27px, 7vw, 38px);
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .discount h3 {
+      font-size: 15px;
+      margin-top: 5px;
+    }
+
+    .discount p {
+      font-size: 12px;
+      margin-top: 11px;
+    }
+
+    /* TÍTULOS */
+
+    .section-title {
+      background: var(--teal);
+      color: white;
+      border: 3px double #ff80b9;
+      outline: 2px solid var(--teal);
+      border-radius: 50px;
+      padding: 15px 10px;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      margin: 22px 0;
+    }
+
+    .price-button {
+      width: 100%;
+      display: block;
+    }
+
+    /* TABELA */
+
+    .price-table {
+      display: none;
+      background: white;
+      border: 1px solid #f3a9c9;
+      border-radius: 17px;
+      padding: 15px;
+      margin: 15px 0 22px;
+    }
+
+    .price-table.show {
+      display: block;
+    }
+
+    .price-table h3 {
+      color: var(--pink);
+      font-family: 'Satisfy', cursive;
+      font-size: 27px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 2px;
+      border-bottom: 1px dashed #f2a4c6;
+      font-size: 11px;
+    }
+
+    .price-row strong {
+      text-align: right;
+      color: #d92e7c;
+    }
+
+    /* CARTÕES DE SERVIÇO */
+
+    .service-card {
+      background: #fffaf7;
+      padding: 15px 4px;
+      border-bottom: 1px dashed #ff9bc5;
+    }
+
+    .service-heading {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 10px;
+    }
+
+    .service-icon {
+      width: 41px;
+      height: 41px;
+      min-width: 41px;
+      border-radius: 50%;
+      background: var(--pink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .service-card:nth-child(even) .service-icon {
+      background: var(--teal);
+    }
+
+    .service-heading h3 {
+      font-family: 'Satisfy', cursive;
+      font-size: 25px;
+      font-weight: normal;
+    }
+
+    .service-prices {
+      background: var(--light-pink);
+      color: #d92e7c;
+      border-radius: 30px;
+      text-align: center;
+      padding: 12px 6px;
+      font-size: 11px;
+      font-weight: 900;
+      margin-bottom: 13px;
+    }
+
+    .service-card select,
+    .service-card input {
+      width: 100%;
+      padding: 9px 10px;
+      border: 1px solid #f5bfd7;
+      border-radius: 11px;
+      background: white;
+      color: #28717b;
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .add-button {
+      display: block;
+      width: 100%;
+      border: none;
+      border-radius: 11px;
+      background: #ed4d9b;
+      color: white;
+      padding: 10px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .add-button:active,
+    .whatsapp-button:active {
+      transform: scale(.98);
+    }
+
+    /* SERVIÇOS ADICIONAIS */
+
+    .additional-heading {
+      margin-top: 25px;
+    }
+
+    .additional-card {
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+      padding: 12px 4px;
+      border-bottom: 1px dashed #ff9bc5;
+    }
+
+    .additional-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--pink);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+    }
+
+    .additional-card:nth-child(even) .additional-icon {
+      background: var(--teal);
+    }
+
+    .additional-content {
+      min-width: 0;
+    }
+
+    .additional-name {
+      font-family: 'Satisfy', cursive;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .additional-controls {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 75px;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .additional-price {
+      background: var(--light-pink);
+      color: #d92e7c;
+      border-radius: 30px;
+      padding: 9px 5px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .additional-controls input {
+      width: 100%;
+      min-width: 0;
+      padding: 9px 5px;
+      border: 1px solid #f5bfd7;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 11px;
+    }
+
+    .additional-card .add-button {
+      grid-column: 1 / -1;
+    }
+
+    /* INFORMAÇÕES */
+
+    .info-box {
+      background: #fff0f6;
+      border: 1px solid #f4a3c6;
+      border-radius: 16px;
+      padding: 18px 12px;
+      margin: 20px 0 25px;
+      text-align: center;
+    }
+
+    .info-box h3 {
+      font-family: 'Satisfy', cursive;
+      color: var(--pink);
+      font-size: 24px;
+      font-weight: normal;
+      margin-bottom: 10px;
+    }
+
+    .info-box p {
+      font-size: 12px;
+      line-height: 2;
+    }
+
+    .info-box strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 12px;
+    }
+
+    /* FORMULÁRIO */
+
+    .order-box {
+      background: #e4f7f4;
+      border: 2px solid var(--teal);
+      border-radius: 18px;
+      padding: 18px 15px;
+      margin-top: 20px;
+    }
+
+    .order-box h2 {
+      text-align: center;
+      font-size: 19px;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .order-box label {
+      display: block;
+      font-size: 12px;
+      font-weight: 900;
+      margin: 12px 0 5px;
+    }
+
+    .order-box input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #f0b5d0;
+      border-radius: 11px;
+      background: white;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .order-box input:focus {
+      border-color: var(--teal);
+    }
+
+    /* CARRINHO */
+
+    .cart-empty {
+      font-size: 13px;
+      text-align: center;
+      color: #777;
+      padding: 12px 0;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 0;
+      border-bottom: 1px dashed #efa6c8;
+      font-size: 12px;
+    }
+
+    .cart-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cart-info strong {
+      display: block;
+    }
+
+    .cart-info small {
+      color: #d92e7c;
+    }
+
+    .remove-button {
+      border: none;
+      border-radius: 8px;
+      background: #ffe5ef;
+      color: #d72e79;
+      padding: 7px;
+      font-size: 11px;
+    }
+
+    .total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 20px;
+      font-weight: 900;
+      margin: 20px 0 15px;
+    }
+
+    .whatsapp-button {
+      display: block;
+      width: 100%;
+      padding: 14px 8px;
+      border: none;
+      border-radius: 12px;
+      background: #18b96d;
+      color: white;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .message {
+      text-align: center;
+      color: #d92e7c;
+      font-size: 12px;
+      min-height: 18px;
+      margin-top: 10px;
+    }
+
+    .confirmation-note {
+      text-align: center;
+      font-size: 10px;
+      color: #287b81;
+      margin-top: 10px;
+    }
+
+    /* RODAPÉ */
+
+    footer {
+      background: #075967;
+      color: white;
+      text-align: center;
+      padding: 23px 12px;
+      margin-top: 30px;
+      font-size: 12px;
+      line-height: 2;
+    }
+
+    footer strong {
+      color: #ff80b9;
+      font-size: 16px;
+    }
+
+    @media (min-width: 650px) {
+      .container {
+        padding: 30px;
+      }
+
+      .service-card {
+        padding: 18px 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- CABEÇALHO -->
+
+    <header class="hero">
+
+      <div class="hero-heart">♥</div>
+
+      <div class="logo">
+        SALVATORE
+        <span>Pet Spa</span>
+      </div>
+
+      <div class="logo-paw">🐾</div>
+
+      <h2>Estética & Bem-estar Animal</h2>
+
+      <div class="animals">🐶 🐱</div>
+
+      <p class="hero-description">
+        ♡ Seu pet mais limpo, saudável e feliz! ♡
+      </p>
+
+    </header>
+
+    <main class="container">
+
+      <!-- PROMOÇÃO -->
+
+      <section class="discount">
+
+        <h2>10% DE DESCONTO</h2>
+
+        <h3>NO PRIMEIRO ATENDIMENTO!</h3>
+
+        <p>🐾 Porque eles merecem o melhor! ♡</p>
+
+      </section>
+
+      <!-- SERVIÇOS PRINCIPAIS -->
+
+      <section>
+
+        <div class="section-title">
+          🐾 NOSSOS SERVIÇOS
+        </div>
+
+        <div id="mainServices"></div>
+
+      </section>
+
+      <!-- SERVIÇOS ADICIONAIS -->
+
+      <section>
+
+        <div class="section-title additional-heading">
+          🐾 SERVIÇOS ADICIONAIS
+        </div>
+
+        <div id="additionalServices"></div>
+
+      </section>
+
+      <!-- OBSERVAÇÃO -->
+
+      <section class="info-box">
+
+        <h3>Seu pet sempre limpo,<br>feliz e saudável!</h3>
+
+        <p>🏠 Pet é na minha residência.</p>
+        <p>🐾 Um espaço simples e seguro.</p>
+        <p>💗 Atendimento com amor e carinho.</p>
+
+        <strong>Cães gigantes: valor sob consulta.</strong>
+
+      </section>
+
+      <!-- TABELA DE PREÇOS -->
+
+      <button
+        type="button"
+        id="priceButton"
+        class="section-title price-button">
+
+        🐾 TABELA DE PREÇOS
+
+      </button>
+
+      <section id="priceTable" class="price-table">
+
+        <h3>♡ Tabela de preços ♡</h3>
+
+        <div id="priceRows"></div>
+
+      </section>
+
+      <!-- PEDIDO -->
+
+      <section class="order-box">
+
+        <h2>🛒 MONTE SEU PEDIDO</h2>
+
+        <label for="petName">Nome do pet:</label>
+
+        <input
+          type="text"
+          id="petName"
+          placeholder="Ex.: Mel"
+          autocomplete="off">
+
+        <label for="customerName">Seu nome:</label>
+
+        <input
+          type="text"
+          id="customerName"
+          placeholder="Digite seu nome"
+          autocomplete="name">
+
+        <div id="cartItems">
+
+          <p class="cart-empty">
+            Seu carrinho está vazio.
+          </p>
+
+        </div>
+
+        <div class="total">
+
+          <span>Total:</span>
+
+          <span id="total">R$ 0,00</span>
+
+        </div>
+
+        <button
+          type="button"
+          id="sendOrder"
+          class="whatsapp-button">
+
+          💚 ENVIAR PEDIDO PELO WHATSAPP
+
+        </button>
+
+        <p id="message" class="message" aria-live="polite"></p>
+
+        <p class="confirmation-note">
+          O agendamento será confirmado pelo WhatsApp.
+        </p>
+
+      </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+
+    <footer>
+
+      <strong>SALVATORE PET SPA 🐾</strong>
+
+      <p>Estética & Bem-estar Animal</p>
+
+      <p>📱 (71) 98397-2864</p>
+
+      <p>♡ Cuidado, carinho e bem-estar em cada detalhe! ♡</p>
+
+    </footer>
+
+  </div>
+
+  <script src="script.js" defer></script>
+
+</body>
+</html>
